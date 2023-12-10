@@ -5,7 +5,7 @@ set(LLVM_LINK_COMPONENTS
   Support
   )
 
-add_toy_chapter(toyc-ch2
+add_llvm_executable(toyc-ch2
   toyc.cpp
   parser/AST.cpp
   mlir/MLIRGen.cpp
@@ -15,8 +15,11 @@ add_toy_chapter(toyc-ch2
   ToyCh2OpsIncGen
 
   )
-include_directories(include/)
-include_directories(${CMAKE_CURRENT_BINARY_DIR}/include/)
+target_include_directories(toyc-ch2
+  PRIVATE
+  "${CMAKE_CURRENT_SOURCE_DIR}/include"
+  "${CMAKE_CURRENT_BINARY_DIR}/include"
+  )
 target_link_libraries(toyc-ch2
   PRIVATE
     MLIRAnalysis
